@@ -1,0 +1,5 @@
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    org.gnagoli.flowable.admin.client.idm.config.conf.ApplicationConfiguration,\
+    org.gnagoli.flowable.admin.client.idm.config.conf.KeycloakIdmAutoConfiguration,\
+    org.gnagoli.flowable.admin.client.admin.config.ApplicationConfiguration
