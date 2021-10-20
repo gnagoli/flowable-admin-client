@@ -34,7 +34,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
-import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
@@ -158,10 +157,6 @@ public class IdmSecurityConfiguration {
                     .and()
                     .authorizeRequests()
                     .antMatchers("/api/authenticate").permitAll()
-                    .antMatchers("/api/register").permitAll()
-                    .antMatchers("/api/activate").permitAll()
-                    .antMatchers("/api/account/reset-password/init").permitAll()
-                    .antMatchers("/api/account/reset-password/finish").permitAll()
                     .antMatchers("/api/**").authenticated()
                     .antMatchers("/websocket/tracker").hasAuthority(AuthoritiesConstants.ADMIN)
                     .antMatchers("/websocket/**").permitAll()
