@@ -55,7 +55,7 @@ public class AccountResource {
     /**
      * GET /rest/authenticate -> check if the user is authenticated, and return its full name.
      */
-    @GetMapping(value = "/rest/authenticate", produces = { "application/json" })
+    @GetMapping(value = "/rest/idm/authenticate", produces = { "application/json" })
     public ObjectNode isAuthenticated(HttpServletRequest request) {
         String user = request.getRemoteUser();
 
@@ -71,7 +71,7 @@ public class AccountResource {
     /**
      * GET /rest/account -> get the current user.
      */
-    @GetMapping(value = "/rest/account", produces = "application/json")
+    @GetMapping(value = "/rest/idm/account", produces = "application/json")
     public UserRepresentation getAccount(Authentication authentication) {
         UserRepresentation userRepresentation = null;
 

@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,4 +67,7 @@ public class ApiUsersResource {
         return result;
     }
 
+//    public UserRepresentation login(String username, String password, HttpServletRequest request){
+//        request.login();
+//    }
 }

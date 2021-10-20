@@ -2,6 +2,7 @@ package org.gnagoli.flowable.admin.client;
 
 import org.gnagoli.flowable.admin.client.admin.logic.properties.FlowableAdminAppProperties;
 import org.gnagoli.flowable.admin.client.common.properties.FlowableCommonAppProperties;
+import org.gnagoli.flowable.admin.client.common.properties.FlowableIdmJwtProperties;
 import org.gnagoli.flowable.admin.client.common.properties.FlowableRestAppProperties;
 import org.gnagoli.flowable.admin.client.idm.logic.properties.FlowableIdmAppProperties;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +14,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
         FlowableAdminAppProperties.class,
         FlowableCommonAppProperties.class,
         FlowableRestAppProperties.class,
-        FlowableIdmAppProperties.class
+        FlowableIdmAppProperties.class,
+        FlowableIdmJwtProperties.class
 })
 public class FlowableStaterApiApplication {
 

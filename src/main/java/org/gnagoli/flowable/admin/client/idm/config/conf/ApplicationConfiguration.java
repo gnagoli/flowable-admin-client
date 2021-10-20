@@ -13,13 +13,20 @@
 package org.gnagoli.flowable.admin.client.idm.config.conf;
 
 import org.gnagoli.flowable.admin.client.common.service.idm.RemoteIdmServiceImpl;
+import org.gnagoli.flowable.admin.client.idm.config.servlet.ApiDispatcherServletConfiguration;
+import org.gnagoli.flowable.admin.client.idm.config.servlet.AppDispatcherServletConfiguration;
 import org.gnagoli.flowable.admin.client.idm.logic.properties.FlowableIdmAppProperties;
 import org.flowable.spring.boot.FlowableSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(FlowableIdmAppProperties.class)
@@ -32,33 +39,33 @@ import org.springframework.context.annotation.FilterType;
     "org.gnagoli.flowable.admin.client.idm.logic.service"}, excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = RemoteIdmServiceImpl.class)})
 public class ApplicationConfiguration {
 
-//    @Bean
-//    public ServletRegistrationBean<DispatcherServlet> idmApiServlet(ApplicationContext applicationContext) {
-//        AnnotationConfigWebApplicationContext dispatcherServletConfiguration = new AnnotationConfigWebApplicationContext();
-//        dispatcherServletConfiguration.setParent(applicationContext);
-//        dispatcherServletConfiguration.register(ApiDispatcherServletConfiguration.class);
-//        DispatcherServlet servlet = new DispatcherServlet(dispatcherServletConfiguration);
-//        ServletRegistrationBean<DispatcherServlet> registrationBean = new ServletRegistrationBean<>(servlet, "/api/idm/*");
-//        registrationBean.setName("Flowable IDM App API Servlet");
-//        registrationBean.setLoadOnStartup(1);
-//        registrationBean.setAsyncSupported(true);
-//        return registrationBean;
-//    }
-//
+    @Bean
+    public ServletRegistrationBean<DispatcherServlet> idmApiServlet(ApplicationContext applicationContext) {
+        AnnotationConfigWebApplicationContext dispatcherServletConfiguration = new AnnotationConfigWebApplicationContext();
+        dispatcherServletConfiguration.setParent(applicationContext);
+        dispatcherServletConfiguration.register(ApiDispatcherServletConfiguration.class);
+        DispatcherServlet servlet = new DispatcherServlet(dispatcherServletConfiguration);
+        ServletRegistrationBean<DispatcherServlet> registrationBean = new ServletRegistrationBean<>(servlet, "/api/idm/*");
+        registrationBean.setName("Flowable IDM App API Servlet");
+        registrationBean.setLoadOnStartup(1);
+        registrationBean.setAsyncSupported(true);
+        return registrationBean;
+    }
 
-//
-//    @Bean
-//    public ServletRegistrationBean<DispatcherServlet> idmAppServlet(ApplicationContext applicationContext) {
-//        AnnotationConfigWebApplicationContext dispatcherServletConfiguration = new AnnotationConfigWebApplicationContext();
-//        dispatcherServletConfiguration.setParent(applicationContext);
-////        dispatcherServletConfiguration.register(AppDispatcherServletConfiguration.class);
-//        DispatcherServlet servlet = new DispatcherServlet(dispatcherServletConfiguration);
-//        ServletRegistrationBean registrationBean = new ServletRegistrationBean(servlet, "/idm-app/*");
-//        registrationBean.setName("Flowable IDM App Servlet");
-//        registrationBean.setLoadOnStartup(1);
-//        registrationBean.setAsyncSupported(true);
-//        return registrationBean;
-//    }
+
+
+    @Bean
+    public ServletRegistrationBean<DispatcherServlet> idmAppServlet(ApplicationContext applicationContext) {
+        AnnotationConfigWebApplicationContext dispatcherServletConfiguration = new AnnotationConfigWebApplicationContext();
+        dispatcherServletConfiguration.setParent(applicationContext);
+        dispatcherServletConfiguration.register(AppDispatcherServletConfiguration.class);
+        DispatcherServlet servlet = new DispatcherServlet(dispatcherServletConfiguration);
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean(servlet, "/idm-app/*");
+        registrationBean.setName("Flowable IDM App Servlet");
+        registrationBean.setLoadOnStartup(1);
+        registrationBean.setAsyncSupported(true);
+        return registrationBean;
+    }
 
 //    @Bean
 //    public WebMvcConfigurer idmApplicationWebMvcConfigurer() {
